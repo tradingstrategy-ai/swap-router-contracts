@@ -1,65 +1,53 @@
-# Uniswap Swap Router
+# Base SwapRouter02 deployment
 
-[![Tests](https://github.com/Uniswap/swap-router-contracts/workflows/Tests/badge.svg)](https://github.com/Uniswap/swap-router-contracts/actions?query=workflow%3ATests)
-[![Lint](https://github.com/Uniswap/swap-router-contracts/workflows/Lint/badge.svg)](https://github.com/Uniswap/swap-router-contracts/actions?query=workflow%3ALint)
+## To deploy
 
-This repository contains smart contracts for swapping on the Uniswap V2 and V3 protocols.
-
-## Bug bounty
-
-This repository is subject to the Uniswap V3 bug bounty program,
-per the terms defined [here](./bug-bounty.md).
-
-## Local deployment
-
-In order to deploy this code to a local testnet, you should install the npm package
-`@uniswap/swap-router-contracts`
-and import bytecode imported from artifacts located at
-`@uniswap/swap-router-contracts/artifacts/contracts/*/*.json`.
-For example:
-
-```typescript
-import {
-  abi as SWAP_ROUTER_ABI,
-  bytecode as SWAP_ROUTER_BYTECODE,
-} from '@uniswap/swap-router-contracts/artifacts/contracts/SwapRouter02.sol/SwapRouter02.json'
-
-// deploy the bytecode
+```shell
+npx hardhat run scripts/deploy.js --network base
 ```
 
-This will ensure that you are testing against the same bytecode that is deployed to
-mainnet and public testnets, and all Uniswap code will correctly interoperate with
-your local deployment.
+## Contracts
 
-## Using solidity interfaces
-
-The swap router contract interfaces are available for import into solidity smart contracts
-via the npm artifact `@uniswap/swap-router-contracts`, e.g.:
-
-```solidity
-import '@uniswap/swap-router-contracts/contracts/interfaces/ISwapRouter02.sol';
-
-contract MyContract {
-  ISwapRouter02 router;
-
-  function doSomethingWithSwapRouter() {
-    // router.exactInput(...);
-  }
-}
+Deployed `SwapRouter02` is:
 
 ```
-
-## Tests
-
-Some tests use Hardhat mainnet forking and therefore require an archive node.
-Either create a `.env` file in the workspace root containing:
-
-```
-ARCHIVE_RPC_URL='...'
+0x5788F91Aa320e0610122fb88B39Ab8f35e50040b
 ```
 
-Or set the variable when running tests:
+
+Uniswap v2 contracts on Base:
 
 ```
-export ARCHIVE_RPC_URL='...' && npm run test
+    "base": {
+        "factory": "0x8909Dc15e40173Ff4699343b6eB8132c65e18eC6",
+        "router": "0x4752ba5dbc23f44d87826276bf6fd6b1c372ad24",
+        "init_code_hash": "96e8ac4277198ff8b6f785478aa9a39f403cb768dd02cbee326c3e7da348845f",
+    }
+```
+
+Uniswap v3 contracts on Base:
+
+```
+factory: 0x33128a8fC17869897dcE68Ed026d694621f6FDfD
+position_manager: 0x03a520b32C04BF3bEEf7BEb72E919cf822Ed34f1
+weth9: 0x4200000000000000000000000000000000000006
+```
+
+And now deployed:
+
+```
+```
+
+# Deployment
+
+To deploy:
+
+```shell
+# From Basescan.org
+export ETHESCAN_API_KEY=
+
+# Top it up
+export PRIVATE_KEY=
+
+npx hardhat run scripts/deploy.js --network base
 ```

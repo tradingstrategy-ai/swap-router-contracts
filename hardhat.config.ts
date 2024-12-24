@@ -51,6 +51,10 @@ export default {
     optimism: {
       url: `https://mainnet.optimism.io`,
     },
+    base: {
+      url: `https://mainnet.base.org`,
+      accounts: [process.env.PRIVATE_KEY]
+    },    
   },
   etherscan: {
     // Your API key for Etherscan
